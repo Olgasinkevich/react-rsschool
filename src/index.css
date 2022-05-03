@@ -58,7 +58,7 @@ a {
 }
 
 .container-toys-page {
-  display: block;
+  display: flex;
 }
 
 .nav-bar {
@@ -81,7 +81,7 @@ a {
 .switch-page:hover {
   color: var(--blue);
 }
-
+/*
 .active::after {
   content: "";
   position: absolute;
@@ -91,11 +91,12 @@ a {
   height: 3px;
   background-color: var(--blue);
 }
-
+*/
+/*
 .header__form-wrapper {
   display: flex;
 }
-
+*/
 .search {
   width: 380px;
   height: 40px;
@@ -140,7 +141,7 @@ a {
 }
 
 .main {
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
   min-width: 100%;
@@ -364,6 +365,7 @@ a {
 
 .cards-wrapper {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
   padding: 40px 0;
