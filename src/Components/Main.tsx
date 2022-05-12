@@ -7,20 +7,18 @@ import TOYS, {ToyType} from "./Cards/data";
 const Main = (): JSX.Element => {
     const [items, setItems] = useState(TOYS);
     const [selectedSort, setSelectedSort] = useState('');
-    /*
     const [searchQuery, setSearchQuery] = useState('');
 
-        function getSortedCards () = {
-            if(selectedSort) {
-    return [...item].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]))
-            }
-            return
-            //todo: items&
+    function getSortedCards () {
+        console.log('working');
+        if(selectedSort) {
+            return [...items].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
         }
+        return items;
+    }
+    const sortedCards = useMemo(()=>{
 
-    const sortedCards = useMemo(() => {
-    }, [selectedSort, item])
-    */
+    }, [selectedSort, items]);
 
     const sortCards = (sort: 'name' | 'year'): void => {
         setSelectedSort(sort);
@@ -31,7 +29,12 @@ const Main = (): JSX.Element => {
     return (
         <main className="main">
             <div className='container' style={{justifyContent: 'space-around'}}>
-                <SearchForm/>
+
+                <div className="header__form-wrapper">
+                    <input value={searchQuery} onChange={event => setSearchQuery(event.target.value)}
+                           type="search" className="search border-home-page" placeholder='Search' autoComplete="off"/>
+                </div>
+
                 <Select
                     value={selectedSort}
                     onChange={sortCards}

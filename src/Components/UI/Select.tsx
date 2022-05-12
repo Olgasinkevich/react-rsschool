@@ -2,7 +2,6 @@ import React from 'react';
 
 type OptionType = {[key: string]:string};
 type Props = { options: OptionType[], defaultValue: string, value:string, onChange:any};
-//const Select = ({options, defaultValue}: {options: string, defaultValue: string}): JSX.Element => {
 
 const Select: React.FC<Props> = ({options, defaultValue, value, onChange}) => {
     return (
