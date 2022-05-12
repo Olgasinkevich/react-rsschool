@@ -35,7 +35,7 @@ const Main = (): JSX.Element => {
                 <Select
                     value={selectedSort}
                     onChange={sortCards}
-                    defaultValue={'sorting'}
+                    defaultValue={'Sorting'}
                     options={[
                         {value: 'name', name: 'in name'},
                         {value: 'year', name: 'in year'}

@@ -112,6 +112,11 @@ a {
   background-position: 330px center;
 }
 
+.sorting {
+  color: dimgrey;
+  background-image: none;
+}
+
 .select-counter {
   width: 48px;
   height: 60px;
