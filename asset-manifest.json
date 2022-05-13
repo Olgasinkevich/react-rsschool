@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/react-rsschool/static/css/main.84d1153e.css",
+    "main.js": "/react-rsschool/static/js/main.3a4853d0.js",
+    "static/media/bg.jpg": "/react-rsschool/static/media/bg.22ad08240b76e04221d5.jpg",
+    "static/media/snowflake.svg": "/react-rsschool/static/media/snowflake.a7de9f17453dbd7df734.svg",
+    "static/media/tree.svg": "/react-rsschool/static/media/tree.aee2e280228d283db3b6.svg",
+    "static/media/ball-2.svg": "/react-rsschool/static/media/ball-2.614fea02c5cfe2430aca.svg",
+    "static/media/audio.svg": "/react-rsschool/static/media/audio.f77405bc333e162191f4.svg",
+    "static/media/ball.svg": "/react-rsschool/static/media/ball.02ba2b1b2ea99d65f6d4.svg",
+    "index.html": "/react-rsschool/index.html",
+    "static/media/search.svg": "/react-rsschool/static/media/search.0e6e0283ae532bc3161e.svg",
+    "main.84d1153e.css.map": "/react-rsschool/static/css/main.84d1153e.css.map",
+    "main.3a4853d0.js.map": "/react-rsschool/static/js/main.3a4853d0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84d1153e.css",
+    "static/js/main.3a4853d0.js"
+  ]
+}
