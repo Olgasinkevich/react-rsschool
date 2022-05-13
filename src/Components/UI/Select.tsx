@@ -1,7 +1,8 @@
 import React from 'react';
 
+export type SortType = 'name' | 'year';
 type OptionType = {[key: string]:string};
-type Props = { options: OptionType[], defaultValue: string, value:string, onChange:any};
+type Props = { options: OptionType[], defaultValue: string, value?: SortType, onChange:any};
 
 const Select: React.FC<Props> = ({options, defaultValue, value, onChange}) => {
     return (

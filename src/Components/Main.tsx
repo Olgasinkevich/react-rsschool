@@ -1,29 +1,31 @@
 import React, {useMemo, useState} from 'react';
 import Cards from "./Cards/Cards";
-import Select from "./UI/Select";
+import Select, {SortType} from "./UI/Select";
 import SearchForm from "./UI/SearchForm";
 import TOYS, {ToyType} from "./Cards/data";
 
+
 const Main = (): JSX.Element => {
-    const [items, setItems] = useState(TOYS);
-    const [selectedSort, setSelectedSort] = useState('');
+    const [items, setItems] = useState<ToyType[]>(TOYS);
+    const [selectedSort, setSelectedSort] = useState<SortType>();
     const [searchQuery, setSearchQuery] = useState('');
 
-    function getSortedCards () {
+    const sortedCards = useMemo(()=>{
         console.log('working');
         if(selectedSort) {
             return [...items].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
         }
         return items;
-    }
-    const sortedCards = useMemo(()=>{
 
     }, [selectedSort, items]);
 
-    const sortCards = (sort: 'name' | 'year'): void => {
+    const sortAndSearchCards = useMemo(()=>{
+return sortedCards.filter(items => items.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    }, [searchQuery, sortedCards])
+
+    const sortCards = (sort: SortType): void => {
         setSelectedSort(sort);
-        console.log(sort);
-        setItems([...items].sort((a, b) => a[sort].localeCompare(b[sort])));
+       /* setItems([...items].sort((a, b) => a[sort].localeCompare(b[sort])));*/
 
     }
     return (
@@ -46,7 +48,12 @@ const Main = (): JSX.Element => {
                     ]}/>
             </div>
             <div className="container container-toys-page">
-                <Cards cards={items}/>
+                {sortAndSearchCards.length
+                ?
+                <Cards cards={sortAndSearchCards}/>
+                    :
+                    <h1 className={'textTitle'}>No cards!</h1>
+                }
             </div>
         </main>
     );
