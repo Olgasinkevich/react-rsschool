@@ -1,7 +1,10 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo, useState, useEffect, useCallback} from 'react';
+//components
 import Cards from "./Cards/Cards";
 import Select, {SortType} from "./UI/Select";
 import SearchForm from "./UI/SearchForm";
+import Modal from "./UI/Modal/Modal";
+//data
 import TOYS, {ToyType} from "./Cards/data";
 
 
@@ -9,9 +12,10 @@ const Main = (): JSX.Element => {
     const [items, setItems] = useState<ToyType[]>(TOYS);
     const [selectedSort, setSelectedSort] = useState<SortType>();
     const [searchQuery, setSearchQuery] = useState('');
+    const [modal, setModal] = useState(false);
 
     const sortedCards = useMemo(()=>{
-        console.log('working');
+        console.log('working!!!');
         if(selectedSort) {
             return [...items].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
         }
@@ -23,11 +27,20 @@ const Main = (): JSX.Element => {
 return sortedCards.filter(items => items.name.toLowerCase().includes(searchQuery.toLowerCase()))
     }, [searchQuery, sortedCards])
 
+    useEffect(() => {
+        if(!sortAndSearchCards.length) {
+          setModal(true);
+        }
+    }, [sortAndSearchCards, setModal]);
+
     const sortCards = (sort: SortType): void => {
         setSelectedSort(sort);
        /* setItems([...items].sort((a, b) => a[sort].localeCompare(b[sort])));*/
-
-    }
+            }
+    const onModalPress= useCallback(()=> {
+        setModal(false);
+        setSearchQuery('');
+    }, [setModal, setSearchQuery])
     return (
         <main className="main">
             <div className='container' style={{justifyContent: 'space-around'}}>
@@ -48,12 +61,12 @@ return sortedCards.filter(items => items.name.toLowerCase().includes(searchQuery
                     ]}/>
             </div>
             <div className="container container-toys-page">
-                {sortAndSearchCards.length
-                ?
-                <Cards cards={sortAndSearchCards}/>
-                    :
+                {!modal ?
+                           <Cards cards={sortAndSearchCards}/>
+                :
+                <Modal visible={modal} onPress={ onModalPress}>
                     <h1 className={'textTitle'}>No cards!</h1>
-                }
+                </Modal>}
             </div>
         </main>
     );
