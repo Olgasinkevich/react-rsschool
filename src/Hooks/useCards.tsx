@@ -4,7 +4,6 @@ import {SortType} from "../Components/UI/Select";
 
 export const useSortedCards = (items:ToyType[], selectedSort?:SortType):ToyType[] => {
        const sortedCards = useMemo(()=>{
-        console.log('working!!!');
         if(selectedSort) {
             return [...items].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
         }

@@ -8,15 +8,25 @@ import Modal from "./UI/Modal/Modal";
 import {useCards} from "../Hooks/useCards";
 //data
 import TOYS, {ToyType} from "./Cards/data";
+import axios from "axios";
 
 
 const Main = (): JSX.Element => {
+    const [items, setItems] = useState<ToyType[]>([]);
      const [selectedSort, setSelectedSort] = useState<SortType>();
     const [searchQuery, setSearchQuery] = useState('');
     const [modal, setModal] = useState(false);
 
-    const sortAndSearchCards = useCards (TOYS, searchQuery, selectedSort
-    )
+    async function fetchCards () {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        console.log(response);
+        setItems(response.data);
+    }
+
+    fetchCards().then(data => setItems(data))
+
+
+    const sortAndSearchCards = useCards(items, searchQuery, selectedSort);
 
         useEffect(() => {
         if(!sortAndSearchCards.length) {
@@ -40,6 +50,7 @@ const Main = (): JSX.Element => {
                     <input value={searchQuery} onChange={event => setSearchQuery(event.target.value)}
                            type="search" className="search border-home-page" placeholder='Search' autoComplete="off"/>
                 </div>
+                <button onClick={fetchCards} className='search border-home-page' style={{color: 'dimgrey'}}>GET</button>
 
                 <Select
                     value={selectedSort}
