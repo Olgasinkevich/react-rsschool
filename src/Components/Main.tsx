@@ -4,30 +4,21 @@ import Cards from "./Cards/Cards";
 import Select, {SortType} from "./UI/Select";
 import SearchForm from "./UI/SearchForm";
 import Modal from "./UI/Modal/Modal";
+//hooks
+import {useCards} from "../Hooks/useCards";
 //data
 import TOYS, {ToyType} from "./Cards/data";
 
 
 const Main = (): JSX.Element => {
-    const [items, setItems] = useState<ToyType[]>(TOYS);
-    const [selectedSort, setSelectedSort] = useState<SortType>();
+     const [selectedSort, setSelectedSort] = useState<SortType>();
     const [searchQuery, setSearchQuery] = useState('');
     const [modal, setModal] = useState(false);
 
-    const sortedCards = useMemo(()=>{
-        console.log('working!!!');
-        if(selectedSort) {
-            return [...items].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
-        }
-        return items;
+    const sortAndSearchCards = useCards (TOYS, searchQuery, selectedSort
+    )
 
-    }, [selectedSort, items]);
-
-    const sortAndSearchCards = useMemo(()=>{
-return sortedCards.filter(items => items.name.toLowerCase().includes(searchQuery.toLowerCase()))
-    }, [searchQuery, sortedCards])
-
-    useEffect(() => {
+        useEffect(() => {
         if(!sortAndSearchCards.length) {
           setModal(true);
         }
